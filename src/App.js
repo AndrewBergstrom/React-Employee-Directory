@@ -7,7 +7,7 @@ function EmployeeCard({ img, name, phone }) {
     <div>
       <img src={img} alt={name.first} />
       <div>
-        <p>{`${name.title}${name.first}${name.last}`}</p>
+        <p>{`${name.title} ${name.first} ${name.last}`}</p>
         <p>{phone}</p>
       </div>
     </div>
@@ -73,7 +73,7 @@ class App extends Component {
         <button disabled={isNumberEntered} onClick={this.makeRequest}>
           {isNumberEntered ? "Enter A Number" : "Submit"}</button>
 
-        <div className={style.empContainer}>{this.renderEmployees()}</div>
+        <div style={style.empContainer}>{this.renderEmployees()}</div>
       </div>
     );
   }
