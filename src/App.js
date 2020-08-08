@@ -1,18 +1,6 @@
 import React, { Component } from 'react';
-import axios from "axios"
-import './App.css';
-
-function EmployeeCard({ img, name, phone }) {
-  return (
-    <div>
-      <img src={img} alt={name.first} />
-      <div>
-        <p>{`${name.title} ${name.first} ${name.last}`}</p>
-        <p>{phone}</p>
-      </div>
-    </div>
-  );
-}
+import Main from "./components/Main"
+import Header from "./components/Header"
 
 const style = {
   empContainer: {
@@ -24,56 +12,40 @@ const style = {
 class App extends Component {
   state = {
     users: [],
-    numInput: 0,
+    empInput: 0,
   };
-  handleInputChange = event => {
-    const { name, value } = event.target
-    this.setState({ [name]: value })
-  }
-
-  makeRequest = async () => {
-    const URL = `https://randomuser.me/api/?results=${this.state.numInput}&nat=us`
-
-    try {
-      let results = await axios.get(URL)
-      this.setState({ users: results.data.results })
-
-    } catch (e) {
-      console.log("ERREOR:  ", e)
-    }
-
-  };
-
-  renderEmployees = () => {
-    return this.state.users.map((user) => (
-      <EmployeeCard
-        key={user.id.value}
-        img={user.picture.large}
-        name={user.name}
-        phone={user.phone}
-      />
-    ));
-  };
-  render() {
-    const isNumberEntered = this.state.numInput === 0
+ render() {
+    const isEmployeeEntered = this.state.empInput === 0
     return (
-      <div className="App">
-        <h1>Andrew's International Employee Tracker</h1>
-        <label htmlFor="numInput">
-          # of Emps
-        <input id="numInput"
-            name="numInput"
-            value={this.state.numInput}
-            type="number"
-            min="0"
-            onChange={this.handleInputChange}
-
+      <div className="searchbox">
+        <Header />
+        
+      <form className="form-inline">
+          <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              onChange={e => this.handleInputChange(e)}
           />
-        </label>
-        <button disabled={isNumberEntered} onClick={this.makeRequest}>
-          {isNumberEntered ? "Enter A Number" : "Submit"}</button>
+          <button className="btn my-2 my-sm-0" type="submit">
+              Search
+           </button>
+      </form>
 
-        <div style={style.empContainer}>{this.renderEmployees()}</div>
+
+        
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  </table>
+  <div style={style.empContainer}><Main/></div>
       </div>
     );
   }
