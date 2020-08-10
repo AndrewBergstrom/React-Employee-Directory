@@ -1,8 +1,8 @@
 import React from 'react';
 
-
 function SearchForm(props) {
     return (
+
         <div className="container">
             <form className="form-inline searchbar mb-2">
                 <input
@@ -14,10 +14,8 @@ function SearchForm(props) {
                     placeholder="Search For an Employee"
                     id="search"
                 />
-             <button className="btn my-2 my-sm-0" type="submit"> Search</button>
             </form>
         </div>
-
     )
 }
 

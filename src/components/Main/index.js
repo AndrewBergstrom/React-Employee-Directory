@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import EmployeeCard from '../EmployeeCard'
 import API from '../../utils/API';
 
-
 class Main extends Component {
   state = {
     users: [],
@@ -17,6 +16,7 @@ class Main extends Component {
     })
   }
 
+
   handleInputChange = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -25,9 +25,13 @@ class Main extends Component {
     });
   };
 
+
+
 // Renders employee info
   render() {
-    return this.state.users.map((user) => (
+    
+    return(
+      this.state.users.map((user) => (
       <div className="container">
         <EmployeeCard
           key={user.id.value}
@@ -38,9 +42,12 @@ class Main extends Component {
           email={user.email}
         />
       </div>
-    ));
+     ))
+    );
   };
-
 }
 
 export default Main;
+
+// <SearchForm value={props.value} handleInputChange={props.handleInputChange}/> 
+
