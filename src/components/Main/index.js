@@ -1,37 +1,36 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import EmployeeCard from '../EmployeeCard'
+import API from '../../utils/API';
+
+
 class Main extends Component {
     state = {
       users: [],
-      numInput: 0,
+      search: '',
     };
   
   
     componentDidMount(){
-      this.makeRequest()
+      API.search().then(res=>{
+        console.log(res.data.results)
+        this.setState({users: res.data.results})
+      })
     }
+
     handleInputChange = event => {
-      const { name, value } = event.target
-      this.setState({ [name]: value })
-    }
-  
-    makeRequest = async () => {
-      const URL = `https://randomuser.me/api/?results=200&nat=us`
-  
-      try {
-        let results = await axios.get(URL)
-        this.setState({ users: results.data.results })
-  
-      } catch (e) {
-        console.log("ERREOR:  ", e)
-      }
-  
+      const name = event.target.name;
+      const value = event.target.value;
+      this.setState({
+        [name]: value
+      });
     };
   
+    
     render(){
       return this.state.users.map((user) => (
           <div className="container">
+          
         <EmployeeCard
           key={user.id.value}
           img={user.picture.large}
@@ -39,7 +38,8 @@ class Main extends Component {
           phone={user.phone}
           location={user.location}
           email ={user.email}
-        />
+        /> 
+      
         </div>
       ));
     };
