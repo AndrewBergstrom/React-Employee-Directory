@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import EmployeeCard from '../EmployeeCard'
 import API from '../../utils/API';
+import SearchForm from '../SearchForm'
+import Filterbar from '../Filterbar'
 
 class Main extends Component {
   state = {
@@ -18,11 +20,11 @@ class Main extends Component {
 
 
   handleInputChange = event => {
-    const name = event.target.name;
     const value = event.target.value;
+    const name = event.target.name
+
     this.setState({
-      [name]: value
-    });
+      [name]: value});
   };
 
 
@@ -31,7 +33,10 @@ class Main extends Component {
   render() {
     
     return(
-      this.state.users.map((user) => (
+      <>
+      <SearchForm handleInputChange={this.handleInputChange} value={this.state.search} />
+      <Filterbar />
+      {this.state.users.filter(user => {return user.name.first.toLowerCase().indexOf(this.state.search) > -1}).map((user) => (
       <div className="container">
         <EmployeeCard
           key={user.id.value}
@@ -42,7 +47,9 @@ class Main extends Component {
           email={user.email}
         />
       </div>
-     ))
+      
+     ))}
+     </>
     );
   };
 }

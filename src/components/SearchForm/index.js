@@ -1,12 +1,13 @@
 import React from 'react';
 
+
 function SearchForm(props) {
     return (
 
         <div className="container">
             <form className="form-inline searchbar mb-2">
                 <input
-                    onChange={props.handleInputChange}
+                    onChange= {props.handleInputChange}
                     value={props.value}
                     name="search"
                     type="text"
@@ -16,6 +17,7 @@ function SearchForm(props) {
                 />
             </form>
         </div>
+        
     )
 }
 

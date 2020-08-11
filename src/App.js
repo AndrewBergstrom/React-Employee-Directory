@@ -1,15 +1,12 @@
 import React from 'react';
 import Main from "./components/Main"
 import Header from './components/Header';
-import SearchForm from './components/SearchForm'
-import Filterbar from './components/Filterbar'
 
-function App(props) {
+function App() {
   return (
     <div>
-      <Header />
-      <SearchForm value={props.value} handleInputChange={props.handleInputChange}/> 
-      <Filterbar />
+      <Header /> 
+      
       <Main />
 
     </div>
@@ -17,3 +14,5 @@ function App(props) {
 }
 
 export default App
+
+// value={props.value} handleInputChange={props.handleInputChange}
