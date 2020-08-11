@@ -1,0 +1,15 @@
+.table .nameSort {
+    cursor: pointer;
+  }
+  
+  .table .nameSort .pointer:after {
+    font-size: 80%;
+    content: "";
+    margin-right: 18px;
+  }
+  
+  .table .nameSort .pointer:hover:after {
+    font-size: 80%;
+    content: "🔻";
+    margin-right: 0;
+  }

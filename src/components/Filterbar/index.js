@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css'
 
 function filterBar(props) {
     return (
@@ -7,7 +8,7 @@ function filterBar(props) {
             <thead>
                 <tr>
                     <th scope ="col">Photo</th>
-                    <th scope ="col">name</th>
+                    <th onClick={props.sortEmp} scope ="col" className="nameSort" >name </th>
                     <th scope ="col">Phone</th>
                     <th scope ="col">Location</th>
                     <th scope ="col">Email</th>

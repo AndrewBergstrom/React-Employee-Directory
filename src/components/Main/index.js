@@ -8,6 +8,7 @@ class Main extends Component {
   state = {
     users: [],
     search: '',
+   
   };
 
 
@@ -27,6 +28,17 @@ class Main extends Component {
       [name]: value});
   };
 
+ sortEmp=()=>{
+   const sortedEmp = this.state.users.sort((a,b )=>{
+     if(a.name.first < b.name.first) {return -1}
+     
+   }) 
+   this.setState({
+     users: sortedEmp
+   })
+
+ }
+
 
 
 // Renders employee info
@@ -35,7 +47,7 @@ class Main extends Component {
     return(
       <>
       <SearchForm handleInputChange={this.handleInputChange} value={this.state.search} />
-      <Filterbar />
+      <Filterbar sortEmp = {this.sortEmp} />
       {this.state.users.filter(user => {return user.name.first.toLowerCase().indexOf(this.state.search) > -1}).map((user) => (
       <div className="container">
         <EmployeeCard
